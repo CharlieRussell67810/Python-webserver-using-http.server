@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  
+  <script>
+    messages = [];
+    const req = new XMLHttpRequest();
+    function reqListener() {
+      console.log(this.responseText);
+    } 
+    function myFunction() {
+      req.addEventListener("load", test);
+      req.open("GET", "button");
+      req.send();
+
+    }
+    function getMessages() {
+      req.addEventListener("load", test1);
+      req.open("GET", "getMessages /field1");
+      req.send();
+
+    }
+    function test(){
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+    function test1(){
+      addToMessage(this.responseText);
+    }
+
+    function addToMessage(messageString){
+      messages = [];
+      itemTemp = "";
+      rowTemp = [];
+      for (let i = 0; i < messageString.length; i++) {
+        if (messageString[i] == ";"){
+          rowTemp.push(itemTemp);
+          itemTemp = "";
+          messages.push(rowTemp);
+          rowTemp = [];
+        }else if (messageString[i] == ","){
+          rowTemp.push(itemTemp);
+          itemTemp = "";
+        }else {
+          itemTemp = itemTemp + messageString[i];
+        }
+      }
+     
+    }
+  </script>
+
+  <head>
+    <title>testing website</title>
+  </head>
+
+  <body id = demo>
+    <button onclick="myFunction()">Click me</button>
+    <button onclick="getMessages()">get messages</button>
+    <p id="demo"></p>
+  </body>
+  
+</html>
