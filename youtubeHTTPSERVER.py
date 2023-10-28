@@ -1,7 +1,7 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import time # imported for testing
 
-HOST = "129.12.140.209"# my ip for testing
+HOST = ""# my ip for testing
 PORT = 9999# port to be hosted
 
 
